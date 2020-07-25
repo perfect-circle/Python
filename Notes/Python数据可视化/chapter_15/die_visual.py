@@ -3,11 +3,11 @@ import pygal
 
 # 创建一个色子
 die_1 = Die()
-die_2 = Die()
+die_2 = Die(10)
 
 # 丢几次色子，并将其记录在列表中
 results = []
-for roll_num in range(1000):
+for roll_num in range(50000):
     die_1_num = die_1.roll()
     die_2_num = die_2.roll()
     die_num = die_1_num + die_2_num
@@ -23,10 +23,11 @@ for value in range(2,max_result+1):
 # 对数据进行可视化
 hist = pygal.Bar()
 
-hist.title = "Results of rolling two D6 1000 times."
-hist.x_labels = ['2','3','4','5','6','7','8','9','10','11','12']
+hist.title = "Results of rolling two D10 and D6 50000 times."
+hist.x_labels = ['2','3','4','5','6','7','8','9','10','11','12',
+        '13','14','15','16']
 hist.x_title = "Result"
 hist.y_title = "Frequency of Result"
 
-hist.add('Two D6',frequencies)
+hist.add('D10 + D6',frequencies)
 hist.render_to_file('die_visual.svg')
